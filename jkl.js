@@ -16,7 +16,7 @@ class MyExtension {
 
       // `name` is what the user sees in the toolbox
       // It can be changed without breaking projects.
-      name: 'Hot and Cool Stuff',
+      name: 'Download',
 
       blocks: [
         { //download function
@@ -29,7 +29,7 @@ class MyExtension {
             },
             filename : {
               type: Scratch.ArgumentType.STRING,
-              defaultValue: 'savefile'
+              defaultValue: 'savefile.txt'
             },
             type : {
               type: Scratch.ArgumentType.STRING,
