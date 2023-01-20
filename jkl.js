@@ -16,48 +16,48 @@ class MyExtension {
 
       // `name` is what the user sees in the toolbox
       // It can be changed without breaking projects.
-      name: 'Download',
+      name: 'Usefull Stuff',
 
       blocks: [
         { //download function
-          opcode: 'download',
-          blockType: Scratch.BlockType.COMMAND,
+          opcode: 'mp',
+          blockType: Scratch.BlockType.REPORTER,
           arguments: {
-            data : {
-              type: Scratch.ArgumentType.STRING,
-              defaultValue: 'Hey You Guys'
+            value : {
+              type: Scratch.ArgumentType.NUMBER,
+              defaultValue: 5
             },
-            filename : {
-              type: Scratch.ArgumentType.STRING,
-              defaultValue: 'savefile.txt'
+            from1: {
+              type: Scratch.ArgumentType.NUMBER,
+              defaultValue: 0
             },
-            type : {
-              type: Scratch.ArgumentType.STRING,
-              defaultValue: 'text/plain'
+            from2: {
+                type: Scratch.ArgumentType.NUMBER,
+                defaultValue: 10
             },
+            to1: {
+                type: Scratch.ArgumentType.NUMBER,
+                defaultValue: 50
+            },
+            to2: {
+                type: Scratch.ArgumentType.NUMBER,
+                defaultValue: 250
+            }
           },
-          text: 'Download (File Contents: [data], File Name: [filename], Type: [type])'
+          text: 'Map: [value], From: [from1] [from2], And To: [to1] [to2]'
         },
       ]
     };
   }
-  download(data, filename, type) {
-    var file = new Blob([data], {type: type});
-    if (window.navigator.msSaveOrOpenBlob) // IE10+
-        window.navigator.msSaveOrOpenBlob(file, filename);
-    else { // Others
-        var a = document.createElement("a"),
-                url = URL.createObjectURL(file);
-        a.href = url;
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
-        setTimeout(function() {
-            document.body.removeChild(a);
-            window.URL.revokeObjectURL(url);  
-        }, 0); 
+
+    mp(value, from1, from2, to1, to2) {
+        var a = {};
+        a.a = (from2 - from1);
+        a.b = (value - from1);
+        a.c = (to2 - to1);
+        a.d = ((value * a.c) + to1);
+        return a.d;
     }
-  }
 }
 
 // Call Scratch.extensions.register to register your extension
