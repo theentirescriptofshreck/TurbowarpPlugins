@@ -4,6 +4,7 @@ var tilesx = [];
 var tilesy = [];
 var tilesw = [];
 var tilesh = [];
+var tilesc = [];
 class MyExtension {
   /**
    * Scratch will call this method *once* when the extension loads.
@@ -129,6 +130,14 @@ class MyExtension {
             }
           },
           text: 'Collision with tiles: X:[x], Y:[y], W:[w], H:[h], Tiles:[stuff]'
+        },
+        { //download function
+          opcode: 'deletetiles',
+          blockType: Scratch.BlockType.COMMAND,
+          arguments: {
+            
+          },
+          text: 'Delete All Tiles'
         }
       ]
     };
@@ -177,6 +186,13 @@ class MyExtension {
         }
       }
       return out;
+    }
+    deletetiles(){
+      tilesx=[];
+      tilesy=[];
+      tilesw=[];
+      tilesh=[];
+      tilesc=[];
     }
 }
 
