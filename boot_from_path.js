@@ -1,10 +1,6 @@
 // We use class syntax to define our extension object
 // This isn't actually necessary, but it tends to look the best
-var tilesx = [];
-var tilesy = [];
-var tilesw = [];
-var tilesh = [];
-var tilesc = [];
+
 class MyExtension {
   /**
    * Scratch will call this method *once* when the extension loads.
@@ -20,7 +16,7 @@ class MyExtension {
 
       // `name` is what the user sees in the toolbox
       // It can be changed without breaking projects.
-      name: 'Boot Game From Disk',
+      name: 'Boot Game From Path',
 
       blocks: [
         { //download function
@@ -41,21 +37,33 @@ class MyExtension {
               type: Scratch.ArgumentType.NUMBER,
               defaultValue: 360
             },
+            name : {
+              type: Scratch.ArgumentType.STRING,
+              defaultValue: "PIRACY IS SORT OF BAD"
+            },
           },
-          text: 'Boot index.html from [path] and frame width:[w], frame height:[h].'
+          text: 'Boot index.html from [path] and frame width:[w], frame height:[h]. window name:[name]'
         }
         
       ]
     };
   }
 
-    boot(path,w,h){
+    boot(path,w,h,name){
       var out = "file:///"+path;
       var iframe = document.createElement("iframe");
       iframe.id = "iframe";
       iframe.src = out+"index.html";
       iframe.width = w;
       iframe.height = h;
+      var newhead = document.createElement("head");
+      var newbody = document.createElement("body");
+      var title = document.createElement("title");
+      title.innerHTML = name;
+      newhead.appendChild(title);
+      newbody.appendChild(iframe);
+      document.head=newhead;
+      document.body=newbody;
     }
 }
 
